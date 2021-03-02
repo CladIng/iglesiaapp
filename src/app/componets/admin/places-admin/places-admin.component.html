@@ -1,0 +1,20 @@
+<div>
+  <h1>Cupos</h1>
+  <span [routerLink]="['/admin']" class="back"><- regresar</span><br><br>
+  <hr>
+  <div *ngFor="let place of places" class="container-list-item">
+    <div class="container-first-chart">
+      <span class="first-chart">
+        {{ place.position }}
+      </span>
+      <span [ngClass]="{'able': !place.selected, 'disable': place.selected}" class="status"></span>
+    </div>
+    <div class="contaner-info">
+      <span class="title-item"> {{ place.namePerson != '' ? place.namePerson : 'Sin persona asignada' }} </span>
+      <span class="subtitle-item"> {{ place.selected ? 'Ocupado' : 'Disponible' }} </span>
+    </div>
+    <a (click)="editReservation(place)" class="btn-delete">Editar</a>
+  </div>
+  <br><br><br>
+</div>
+<app-edit-reservation></app-edit-reservation>

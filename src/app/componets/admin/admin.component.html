@@ -1,0 +1,25 @@
+<div>
+  <h1>Administrador</h1>
+  <div class="container-count-items">
+    <div class="count-items">
+      {{ ceremonies.length }}
+    </div>
+    <span class="name-items">Ceremonias</span>
+    <div (click)="showCreateCeremony()" class="icon-add">+</div>
+  </div>
+  <hr>
+  <div *ngFor="let ceremony of ceremonies" class="container-list-item">
+    <div (click)="openPlaces(ceremony.key)" class="container-first-chart">
+      <span class="first-chart">
+        {{ ceremony.name.substr(0,1).toUpperCase() }}
+      </span>
+    </div>
+    <div (click)="openPlaces(ceremony.key)" class="contaner-info">
+      <span class="title-item"> {{ ceremony.name }} </span>
+      <span class="subtitle-item"> {{ ceremony.date | date:"EEEE d, MMMM y '-' h:mm a" }} </span>
+    </div>
+    <a (click)="deleteCeremony(ceremony)" class="btn-delete">Eliminar</a>
+  </div>
+  <br><br><br>
+</div>
+<app-create-cereminy></app-create-cereminy>

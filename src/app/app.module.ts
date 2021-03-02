@@ -1,18 +1,45 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import localeEs from "@angular/common/locales/es";
+import { registerLocaleData } from "@angular/common";
+registerLocaleData(localeEs, 'es')
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
+import { environment } from '../environments/environment';
+
+import { MainModule } from "src/app/modules/main/main.module";
+import { MainRoutingModule } from "src/app/modules/main/main-routing.module";
+
+// Componentes globales
+import { BottomBarComponent } from "src/app/componets/shared/bottom-bar/bottom-bar.component";
+import { NotificationComponent } from './componets/shared/notification/notification.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
+    // Globales
+    BottomBarComponent,
+
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    // AppRoutingModule,
+    MainModule,
+    MainRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'es'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

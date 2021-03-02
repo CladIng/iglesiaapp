@@ -1,0 +1,30 @@
+<section *ngIf="showCard" class="container-card">
+  <div class="card">
+    <div class="container-form-item">
+      <span class="name-form-item">Nombre completo</span>
+      <input [formControl]="name" class="input-form-item" type="text" name=""  >
+    </div>
+    <div class="container-form-item">
+      <span class="name-form-item">Edad</span>
+      <input [formControl]="age" class="input-form-item" type="tel" name="" >
+    </div>
+    <div class="container-form-item">
+      <span class="name-form-item">Número de celular</span>
+      <input [formControl]="tel" class="input-form-item" type="tel" name="" >
+    </div>
+    <div class="container-form-item">
+      <span class="name-form-item">Temperatura</span>
+      <input [formControl]="temperature" class="input-form-item" type="number" name="" >
+    </div>
+    <div class="container-form-item">
+      <span class="name-form-item">Estado de reservación</span>
+      <div (click)="changeReservation()" class="container-checkbox margin-top-04">
+        <div class="check" [ngClass]="{'yes': place.selected}" ></div>
+      </div>
+    </div>
+    <div class="container-btns">
+      <button class="btn-delete" (click)="closeCard()" >cerrar</button>
+      <button class="btn-delete" (click)="createReservation()" >Actualizar</button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+<section *ngIf="showCard" class="container-card">
+  <div class="card">
+    <div class="container-form-item">
+      <span class="name-form-item">Nombre completo</span>
+      <input [formControl]="name" class="input-form-item" type="text" name=""  >
+    </div>
+    <div class="container-form-item">
+      <span class="name-form-item">Edad</span>
+      <input [formControl]="age" class="input-form-item" type="tel" name="" >
+    </div>
+    <div class="container-form-item">
+      <span class="name-form-item">Número de celular</span>
+      <input [formControl]="tel" class="input-form-item" type="tel" name="" >
+    </div>
+    <div class="container-btns">
+      <button class="btn-delete" (click)="closeCard()" >cerrar</button>
+      <button class="btn-delete" (click)="createReservation()" >Reservar</button>
+    </div>
+  </div>
+</section>

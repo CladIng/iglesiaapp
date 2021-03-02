@@ -1,0 +1,22 @@
+<div>
+  <h1>Cupos</h1>
+  <span [routerLink]="['/ceremonies']" class="back"><- regresar</span><br><br>
+  <hr>
+  <h3>Disponibles <span class="places-availables" >{{ availables }}</span></h3>
+  <div *ngFor="let place of places" class="container-list-item">
+    <div class="container-first-chart">
+      <span class="first-chart">
+        {{ place.position }}
+      </span>
+      <span [ngClass]="{'able': !place.selected, 'disable': place.selected}" class="status"></span>
+    </div>
+    <div class="contaner-info">
+      <span class="title-item"> {{ place.namePerson != '' ? place.namePerson : 'Sin persona asignada' }} </span>
+      <span class="subtitle-item"> {{ place.selected ? 'Ocupado' : 'Disponible' }} </span>
+    </div>
+    <a *ngIf="!place.selected" (click)="openReservation(place)" class="btn-delete">Reservar</a>
+    <a *ngIf="place.selected" class="btn-delete no-fill">Reservado</a>
+  </div>
+  <br><br><br>
+</div>
+<app-reservation></app-reservation>
