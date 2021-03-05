@@ -1,5 +1,5 @@
 .container-notification
-  position: absolute
+  position: fixed
   top: -4rem
   left: 0rem
   right: 0rem
@@ -7,12 +7,15 @@
   align-items: center
   justify-content: center
   height: 3rem
+  z-index: 2
   &.animation
     top: 0rem
   &.done
     background-color: #9dc973
   &.error
     background-color: #EF5673
+  &.warning
+    background-color: #FCB538
   .message
     color: white
 

@@ -54,12 +54,14 @@ export class EditReservationComponent implements OnInit {
   }
 
   createReservation(): void {
+    this._sharedService.emmiterLoader(true);
     this.place.namePerson = this.name.value;
     this.place.telPerson = Number(this.tel.value);
     this.place.agePerson = Number(this.age.value);
     this.place.temperaturePerson = Number(this.temperature.value);
     this._placeService.createReservation(this.ceremonyId, this.place)
       .then(e => {
+        this._sharedService.emmiterLoader(false);
         this._sharedService.emmiterNotification({type: 1, message: 'Reservación actualizada'});
         new Audio('/assets/audios/audio.mp3').play()
         this.closeCard();

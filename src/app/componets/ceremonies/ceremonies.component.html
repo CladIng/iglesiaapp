@@ -1,6 +1,6 @@
 <div>
   <h1>Ceremonias</h1>
-  <!-- <button (click)="createCereminy()" >Crear ceremonia</button> <br> -->
+  
   <div class="container-business">
     <div class="container-logo">
       <img src="/assets/imgs/logo.png" alt="" class="logo">
@@ -11,6 +11,24 @@
     </div>
   </div>
   <hr>
+  <div *ngIf="loading" class="container-list-item-loader" >
+    <div class="container-first-chart-loader">
+    </div>
+    <div class="contaner-info-loader">
+      <span class="title-item-loader"> </span>
+      <span class="subtitle-item-loader"> </span>
+    </div>
+    <div class="icon-arrow-loader"></div>
+  </div>
+  <div *ngIf="loading" class="container-list-item-loader" >
+    <div class="container-first-chart-loader">
+    </div>
+    <div class="contaner-info-loader">
+      <span class="title-item-loader"> </span>
+      <span class="subtitle-item-loader"> </span>
+    </div>
+    <div class="icon-arrow-loader"></div>
+  </div>
   <div *ngFor="let ceremony of ceremonies" (click)="openPlaces(ceremony.key)" class="container-list-item" >
     <div class="container-first-chart">
       <span class="first-chart">
@@ -22,7 +40,6 @@
       <span class="subtitle-item"> {{ ceremony.date | date:"EEEE d 'de' MMMM y '-' h:mm a" }} </span>
     </div>
     <img src="/assets/icons/arrow-ios.svg" alt="" class="icon-arrow">
-    <!-- <a (click)="deleteCeremony(ceremony)" class="btn-delete">Eliminar</a> -->
   </div>
   <br><br><br>
 </div>

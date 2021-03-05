@@ -1,0 +1,23 @@
+<section *ngIf="showCard" class="container-card">
+  <div class="card">
+    <div class="container-form-item">
+      <span class="name-form-item">Nombre completo</span>
+      <input [formControl]="name" class="input-form-item" type="text" name=""  >
+    </div>
+    <div class="container-form-item">
+      <span class="name-form-item">Edad</span>
+      <input [formControl]="date" class="input-form-item" type="datetime-local" name="" >
+    </div>
+    <div class="container-btns margin-top-10 ">
+      <button class="btn-delete" (click)="closeCard()" >cerrar</button>
+      <button class="btn-delete" (click)="updateCeremony()" >Actualizar</button>
+    </div>
+    <div class="container-btns center margin-top-10 margin-top-20">
+      <a *ngIf="!tryDeleteOption" (click)="tyrDelete()" class="btn-delete">Eliminar</a>
+    </div>
+    <div *ngIf="tryDeleteOption" class="container-btns">
+      <a (click)="deleteCeremony()" class="btn-delete">Si</a>
+      <a (click)="cancelTryDelete()" class="btn-delete">No</a>
+    </div>
+  </div>
+</section>

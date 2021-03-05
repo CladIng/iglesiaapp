@@ -17,6 +17,7 @@ export class PlacesAdminComponent implements OnInit {
 
   places: Place[] = [];
   ceremonyId: string = '';
+  loading: boolean = false;
 
   constructor(
     private _ceremonyService: CeremonyService,
@@ -36,6 +37,7 @@ export class PlacesAdminComponent implements OnInit {
   }
 
   getPlaces(): void {
+    this.loading = true;
     this._ceremonyService.getPlacesOfCeremonies(this.ceremonyId).subscribe(data => {
       this.places = data.map(e => {
         const data = e.payload.doc.data() as Object
@@ -44,6 +46,7 @@ export class PlacesAdminComponent implements OnInit {
           ...data
         } as Place;
       });
+      this.loading = false;
     });
   }
 

@@ -11,10 +11,12 @@ export class SharedService {
     type: number,
     message: string
   }>();
+
+  private showLoader$ = new Subject<boolean>();
   
   constructor() { }
 
-  // Mostrar u ocultar crear ceremony
+  // Mostrar u ocultar notificacion
   emmiterNotification(val: {
     type: number,
     message: string
@@ -27,6 +29,15 @@ export class SharedService {
     message: string
   }> {
     return this.showNotification$;
+  }
+
+  // Mostrar u ocultar loader
+  emmiterLoader(val: boolean): void {
+    this.showLoader$.next(val);
+  }
+
+  getSubjetLoader(): Subject<boolean> {
+    return this.showLoader$;
   }
 
 }

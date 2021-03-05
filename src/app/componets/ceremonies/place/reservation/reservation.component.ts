@@ -50,25 +50,46 @@ export class ReservationComponent implements OnInit {
     });
   }
 
-  createReservation(): void {
-    this.place.namePerson = this.name.value;
-    this.place.telPerson = Number(this.tel.value);
-    this.place.agePerson = Number(this.age.value);
-    this.place.selected = true;
-    this._placeService.createReservation(this.ceremonyId, this.place)
-      .then(e => {
-        this._sharedService.emmiterNotification({type: 1, message: 'Reservación creada'});
-        new Audio('/assets/audios/audio.mp3').play()
-        this.closeCard();
-      });
-  }
-
   clearData(): void {
     this.place = null;
     this.ceremonyId = '';
     this.name.setValue('');
     this.tel.setValue('');
     this.age.setValue('');
+  }
+
+  createReservation(): void {
+    if (this.validateForm()) {
+      this._sharedService.emmiterLoader(true);
+      this.place.namePerson = this.name.value;
+      this.place.telPerson = Number(this.tel.value);
+      this.place.agePerson = Number(this.age.value);
+      this.place.selected = true;
+      this._placeService.createReservation(this.ceremonyId, this.place)
+        .then(e => {
+          this._sharedService.emmiterLoader(false);
+          this._sharedService.emmiterNotification({type: 1, message: 'Reservación creada'});
+          new Audio('/assets/audios/audio.mp3').play()
+          this.closeCard();
+        });
+    }
+  }
+
+  validateForm(): boolean {
+    let flag: number = 0;
+    if (this.tel.value == ''){
+      flag++;
+      this._sharedService.emmiterNotification({ type: 3, message: 'Ingrese el telefono' });
+    }
+    if (this.age.value == ''){
+      flag++;
+      this._sharedService.emmiterNotification({ type: 3, message: 'Ingrese la edad' });
+    }
+    if (this.name.value == ''){
+      flag++;
+      this._sharedService.emmiterNotification({ type: 3, message: 'Ingrese un nombre' });
+    }
+    return flag == 0 ? true : false;
   }
 
   listenerShowCard(): void {

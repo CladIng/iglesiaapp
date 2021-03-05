@@ -19750,6 +19750,7 @@ class CeremonyService {
         this.firestore = firestore;
         // Objetos Observable y Emiters
         this.showCreateCeremony$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
+        this.showEditCeremony$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
         this.showCreateReservation$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
     }
     // Mostrar u ocultar crear ceremony
@@ -19760,6 +19761,13 @@ class CeremonyService {
         return this.showCreateCeremony$;
     }
     // Mostrar u ocultar crear ceremony
+    emmiterShowEditCeremony(val) {
+        this.showEditCeremony$.next(val);
+    }
+    getSubjetShowEditCeremony() {
+        return this.showEditCeremony$;
+    }
+    // Mostrar u ocultar crear reservation
     emmiterShowCreateReservation(val) {
         this.showCreateReservation$.next(val);
     }
@@ -19773,9 +19781,16 @@ class CeremonyService {
         return this.firestore.collection('ceremonies', ref => ref.orderBy('date', 'asc')).snapshotChanges();
     }
     createCeremony(ceremony) {
-        delete ceremony.id;
         delete ceremony.key;
         return this.firestore.collection('ceremonies').add(ceremony);
+    }
+    deleteCeremony(ceremony) {
+        return this.firestore.doc('ceremonies/' + ceremony.key).delete();
+    }
+    updateCeremony(ceremony) {
+        var key = ceremony.key;
+        delete ceremony.key;
+        return this.firestore.doc(`ceremonies/${key}`).update(ceremony);
     }
     createPlaceOfCeremony(ceremonyKey, place) {
         delete place.id;
@@ -19783,9 +19798,6 @@ class CeremonyService {
     }
     getPlacesOfCeremonies(ceremonyKey) {
         return this.firestore.collection(`ceremonies/${ceremonyKey}/places`, ref => ref.orderBy('position', 'asc')).snapshotChanges();
-    }
-    deleteCeremony(ceremony) {
-        return this.firestore.doc('ceremonies/' + ceremony.key).delete();
     }
 }
 CeremonyService.ɵfac = function CeremonyService_Factory(t) { return new (t || CeremonyService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__["AngularFirestore"])); };

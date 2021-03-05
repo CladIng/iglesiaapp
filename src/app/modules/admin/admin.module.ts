@@ -8,6 +8,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from 'src/app/componets/admin/admin.component';
 
 import { CreateCereminyComponent } from 'src/app/componets/admin/create-cereminy/create-cereminy.component';
+import { EditCeremonyComponent } from 'src/app/componets/admin/edit-ceremony/edit-ceremony.component';
 import { PlacesAdminComponent } from 'src/app/componets/admin/places-admin/places-admin.component';
 import { EditReservationComponent } from 'src/app/componets/admin/places-admin/edit-reservation/edit-reservation.component';
 
@@ -16,6 +17,8 @@ import { EditReservationComponent } from 'src/app/componets/admin/places-admin/e
     AdminComponent,
 
     CreateCereminyComponent,
+    EditCeremonyComponent,
+
     PlacesAdminComponent,
     EditReservationComponent
   ],

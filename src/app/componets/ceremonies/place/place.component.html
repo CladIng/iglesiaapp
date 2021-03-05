@@ -1,8 +1,32 @@
 <div>
   <h1>Cupos</h1>
-  <span [routerLink]="['/ceremonies']" class="back"><- regresar</span><br><br>
+  <div class="container-icon-back">
+    <img src="/assets/icons/arrow-ios.svg" alt="" class="icon-back">
+    <span [routerLink]="['/ceremonies']" class="back">regresar</span>
+  </div>
+  <br>
   <hr>
   <h3>Disponibles <span class="places-availables" >{{ availables }}</span></h3>
+
+  <div *ngIf="loading" class="container-list-item-loader" >
+    <div class="container-first-chart-loader">
+    </div>
+    <div class="contaner-info-loader">
+      <span class="title-item-loader"> </span>
+      <span class="subtitle-item-loader"> </span>
+    </div>
+    <div class="icon-arrow-loader"></div>
+  </div>
+  <div *ngIf="loading" class="container-list-item-loader" >
+    <div class="container-first-chart-loader">
+    </div>
+    <div class="contaner-info-loader">
+      <span class="title-item-loader"> </span>
+      <span class="subtitle-item-loader"> </span>
+    </div>
+    <div class="icon-arrow-loader"></div>
+  </div>
+
   <div *ngFor="let place of places" class="container-list-item">
     <div class="container-first-chart">
       <span class="first-chart">

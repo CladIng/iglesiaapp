@@ -19,6 +19,7 @@ import { MainRoutingModule } from "src/app/modules/main/main-routing.module";
 // Componentes globales
 import { BottomBarComponent } from "src/app/componets/shared/bottom-bar/bottom-bar.component";
 import { NotificationComponent } from './componets/shared/notification/notification.component';
+import { LoaderComponent } from './componets/shared/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { NotificationComponent } from './componets/shared/notification/notificat
     // Globales
     BottomBarComponent,
 
-    NotificationComponent
+    NotificationComponent,
+
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

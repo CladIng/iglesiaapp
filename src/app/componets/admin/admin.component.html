@@ -8,6 +8,26 @@
     <div (click)="showCreateCeremony()" class="icon-add">+</div>
   </div>
   <hr>
+
+  <div *ngIf="loading" class="container-list-item-loader" >
+    <div class="container-first-chart-loader">
+    </div>
+    <div class="contaner-info-loader">
+      <span class="title-item-loader"> </span>
+      <span class="subtitle-item-loader"> </span>
+    </div>
+    <div class="icon-arrow-loader"></div>
+  </div>
+  <div *ngIf="loading" class="container-list-item-loader" >
+    <div class="container-first-chart-loader">
+    </div>
+    <div class="contaner-info-loader">
+      <span class="title-item-loader"> </span>
+      <span class="subtitle-item-loader"> </span>
+    </div>
+    <div class="icon-arrow-loader"></div>
+  </div>
+
   <div *ngFor="let ceremony of ceremonies" class="container-list-item">
     <div (click)="openPlaces(ceremony.key)" class="container-first-chart">
       <span class="first-chart">
@@ -18,8 +38,9 @@
       <span class="title-item"> {{ ceremony.name }} </span>
       <span class="subtitle-item"> {{ ceremony.date | date:"EEEE d, MMMM y '-' h:mm a" }} </span>
     </div>
-    <a (click)="deleteCeremony(ceremony)" class="btn-delete">Eliminar</a>
+    <a (click)="openEditCeremony(ceremony)" class="btn-delete">Editar</a>
   </div>
   <br><br><br>
 </div>
+<app-edit-ceremony></app-edit-ceremony>
 <app-create-cereminy></app-create-cereminy>

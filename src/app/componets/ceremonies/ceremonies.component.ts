@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+// Services
 import { CeremonyService } from "src/app/services/ceremony.service";
+import { SharedService } from "src/app/services/shared.service";
 
 import { Ceremony } from "src/app/models/ceremony.model";
 
@@ -13,9 +15,11 @@ import { Ceremony } from "src/app/models/ceremony.model";
 export class CeremoniesComponent implements OnInit {
   
   ceremonies: Ceremony[];
+  loading: boolean = false;
   
   constructor(
     private _ceremonyService: CeremonyService,
+    private _sharedService: SharedService,
     private _router: Router
   ) { }
 
@@ -24,6 +28,7 @@ export class CeremoniesComponent implements OnInit {
   }
     
   getCeremonies(): void {
+    this.loading = true;
     this._ceremonyService.getCeremonies().subscribe(data => {
       this.ceremonies = data.map(e => {
         const data = e.payload.doc.data() as Object
@@ -32,23 +37,7 @@ export class CeremoniesComponent implements OnInit {
           ...data
         } as Ceremony;
       })
-    });
-  }
-
-  createCereminy(): void {
-    // this._ceremonyService.createCeremony({
-    //   id: '111',
-    //   name: 'cesar',
-    //   date: Date()
-    // }).then((e: any) => {
-    //   console.log('hola', e)
-    //   console.log('id', e.id);
-    // });
-  }
-
-  deleteCeremony(ceremony: Ceremony): void {
-    this._ceremonyService.deleteCeremony(ceremony).then((e: any) => {
-      console.log('Elemento borrado', e)
+      this.loading = false;
     });
   }
 

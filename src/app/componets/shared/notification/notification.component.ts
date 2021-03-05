@@ -33,7 +33,7 @@ export class NotificationComponent implements OnInit {
   closeNotification(): void {
     setTimeout(() => {
       this.showNotification = false;
-    }, 2000);
+    }, 3000);
   }
 
   listenerShowCard(): void {

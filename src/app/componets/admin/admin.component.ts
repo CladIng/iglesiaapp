@@ -13,6 +13,7 @@ import { Ceremony } from "src/app/models/ceremony.model";
 export class AdminComponent implements OnInit {
 
   ceremonies: Ceremony[] = [];
+  loading: boolean = false;
   
   constructor(
     private _ceremonyService: CeremonyService,
@@ -32,6 +33,7 @@ export class AdminComponent implements OnInit {
   }
 
   getCeremonies(): void {
+    this.loading = true;
     this._ceremonyService.getCeremonies().subscribe(data => {
       this.ceremonies = data.map(e => {
         const data = e.payload.doc.data() as Object
@@ -40,13 +42,15 @@ export class AdminComponent implements OnInit {
           ...data
         } as Ceremony;
       });
+      this.loading = false;
     });
   }
 
-  deleteCeremony(ceremony: Ceremony): void {
-    this._ceremonyService.deleteCeremony(ceremony).then((e: any) => {
-      console.log('Elemento borrado', e)
-    });
+  openEditCeremony(ceremony: Ceremony): void {
+    this._ceremonyService.emmiterShowEditCeremony({
+      action: true,
+      data: ceremony
+    })
   }
 
 }

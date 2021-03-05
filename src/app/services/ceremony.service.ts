@@ -16,6 +16,8 @@ export class CeremonyService {
   // Objetos Observable y Emiters
   private showCreateCeremony$ = new Subject<boolean>();
 
+  private showEditCeremony$ = new Subject<Data>();
+  
   private showCreateReservation$ = new Subject<Data>();
 
   constructor(private firestore: AngularFirestore) { }
@@ -30,6 +32,15 @@ export class CeremonyService {
   }
 
   // Mostrar u ocultar crear ceremony
+  emmiterShowEditCeremony(val: Data): void {
+    this.showEditCeremony$.next(val);
+  }
+
+  getSubjetShowEditCeremony(): Subject<Data> {
+    return this.showEditCeremony$;
+  }
+
+  // Mostrar u ocultar crear reservation
   emmiterShowCreateReservation(val: Data): void {
     this.showCreateReservation$.next(val);
   }
@@ -50,9 +61,20 @@ export class CeremonyService {
   }
 
   createCeremony(ceremony: Ceremony) {
-    delete ceremony.id;
     delete ceremony.key;
     return this.firestore.collection('ceremonies').add(ceremony);
+  }
+
+  deleteCeremony(ceremony: Ceremony) {
+    return this.firestore.doc('ceremonies/'+ ceremony.key).delete();
+  }
+
+  updateCeremony(ceremony: Ceremony) {
+    var key = ceremony.key;
+    delete ceremony.key;
+    return this.firestore.doc(
+      `ceremonies/${key}`
+    ).update(ceremony);
   }
 
   createPlaceOfCeremony(ceremonyKey: string, place: Place) {
@@ -67,8 +89,5 @@ export class CeremonyService {
     ).snapshotChanges();
   }
 
-  deleteCeremony(ceremony: Ceremony) {
-    return this.firestore.doc('ceremonies/'+ ceremony.key).delete();
-  }
 
 }

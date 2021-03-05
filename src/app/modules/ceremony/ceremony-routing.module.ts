@@ -5,10 +5,10 @@ import { CeremoniesComponent } from "src/app/componets/ceremonies/ceremonies.com
 import { PlaceComponent } from "src/app/componets/ceremonies/place/place.component";
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'ceremonies'
-  // },
+  {
+    path: '',
+    component: CeremoniesComponent
+  },
   {
     path: 'ceremonies',
     component: CeremoniesComponent

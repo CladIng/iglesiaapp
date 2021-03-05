@@ -51,3 +51,49 @@
   .icon-arrow
     margin-left: auto
     padding: .5rem
+
+.container-list-item-loader
+  padding-top: 0.5rem
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+  padding-bottom: 0.5rem
+  display: flex
+  align-items: center
+  animation: blink 1500ms ease 0ms infinite
+  .container-first-chart-loader
+    width: 3rem
+    height: 3rem
+    margin-right: 1rem
+    background-color: grey
+    border-radius: .3rem
+  .contaner-info-loader
+    display: flex
+    justify-content: center
+    flex-direction: column
+    flex: 1
+    .title-item-loader
+      width: 40%
+      height: 0.85rem
+      background-color: grey
+      display: flex
+      border-radius: .2rem
+    .subtitle-item-loader
+      width: 84%
+      height: 0.8rem
+      background-color: grey
+      display: flex
+      margin-top: .3rem
+      border-radius: .2rem
+  .icon-arrow-loader
+    width: 1rem
+    height: 1rem
+    background-color: grey
+    margin-right: .4rem
+    border-radius: .2rem
+
+@keyframes blink
+  0%
+    opacity: 0.2
+  50%
+    opacity: 0.8
+  100%
+    opacity: 0.2

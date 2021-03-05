@@ -21,6 +21,8 @@ export class PlaceComponent implements OnInit {
 
   availables: number = 0;
 
+  loading: boolean = false;
+
   constructor(
     private _ceremonyService: CeremonyService,
     private _rutaActiva: ActivatedRoute
@@ -38,6 +40,7 @@ export class PlaceComponent implements OnInit {
   }
 
   getPlaces(): void {
+    this.loading = true;
     this._ceremonyService.getPlacesOfCeremonies(this.ceremonyId).subscribe(data => {
       this.availables = 0;
       this.places = data.map(e => {
@@ -48,6 +51,7 @@ export class PlaceComponent implements OnInit {
           ...data
         } as Place;
       });
+      this.loading = false;
     });
   }
   

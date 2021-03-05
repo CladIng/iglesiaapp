@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 
 // Services
 import { CeremonyService } from "src/app/services/ceremony.service";
+import { SharedService } from "src/app/services/shared.service";
 
 // Models
 import { Place } from "src/app/models/place.model";
@@ -24,7 +25,8 @@ export class CreateCereminyComponent implements OnInit {
   placesNumber = new FormControl(0);
 
   constructor(
-    private _ceremonyService: CeremonyService
+    private _ceremonyService: CeremonyService,
+    private _sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -36,15 +38,15 @@ export class CreateCereminyComponent implements OnInit {
   }
 
   createCereminy(): void {
+    this._sharedService.emmiterLoader(true);
     this._ceremonyService.createCeremony({
       key: '',
-      id: '',
       name: this.name.value,
       date: this.date.value,
       places: []
     }).then((e: any) => {
-      console.log('id', e.id);
       this.generatePlaces(e.id);
+      this.closeCard();
     });
   }
 
@@ -62,8 +64,9 @@ export class CreateCereminyComponent implements OnInit {
         temperaturePerson: 0,
         selected: false,
       });
-      
     }
+    this._sharedService.emmiterNotification({type: 1, message: 'Creado correctamente'})
+    this._sharedService.emmiterLoader(false);
     return places;
   }
 
